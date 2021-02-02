@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QSettings>
-
+#include <QFileDialog>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -81,4 +81,72 @@ MainWindow::~MainWindow()
 void MainWindow::on_actionNew_File_triggered()
 {
 
+}
+
+void MainWindow::on_actionOpen_File_triggered()
+{
+    QString fileName = QFileDialog::getOpenFileName(this, "选择文件", "./");
+
+//    ui->file_lineEdit->setText(fileName);
+}
+
+void MainWindow::on_actionSave_triggered()
+{
+    QSettings *ConfigIni = new QSettings("/home/ushio/Coding/Practice/develop/build-SystemSetting-Desktop_Qt_5_15_2_GCC_64bit-Debug/settings/D80/scanner.ini",QSettings::IniFormat);
+//    ConfigIni->setValue("/config/node1",ui->lineEdit->text());
+
+    //crystal  save
+    ConfigIni->setValue("/scanner_PET/crystal_size_X", ui->doubleSpinBox->value());
+    ConfigIni->setValue("/scanner_PET/crystal_size_Y", ui->doubleSpinBox_2->value());
+    ConfigIni->setValue("/scanner_PET/crystal_size_Z", ui->doubleSpinBox_3->value());
+
+    ConfigIni->setValue("/scanner_PET/crystal_pitch_X", ui->doubleSpinBox_4->value());
+    ConfigIni->setValue("/scanner_PET/crystal_pitch_Y", ui->doubleSpinBox_5->value());
+    ConfigIni->setValue("/scanner_PET/crystal_pitch_Z", ui->doubleSpinBox_6->value());
+
+    ConfigIni->setValue("/scanner_PET/crystal_num_X", ui->spinBox_7->value());
+    ConfigIni->setValue("/scanner_PET/crystal_num_Y", ui->spinBox_8->value());
+    ConfigIni->setValue("/scanner_PET/crystal_num_Z", ui->spinBox_9->value());
+
+    //block  save
+    ConfigIni->setValue("/scanner_PET/block_size_X", ui->doubleSpinBox_10->value());
+    ConfigIni->setValue("/scanner_PET/block_size_Y", ui->doubleSpinBox_11->value());
+    ConfigIni->setValue("/scanner_PET/block_size_Z", ui->doubleSpinBox_12->value());
+
+    ConfigIni->setValue("/scanner_PET/block_pitch_X", ui->doubleSpinBox_13->value());
+    ConfigIni->setValue("/scanner_PET/block_pitch_Y", ui->doubleSpinBox_14->value());
+    ConfigIni->setValue("/scanner_PET/block_pitch_Z", ui->doubleSpinBox_15->value());
+
+    ConfigIni->setValue("/scanner_PET/block_num_X", ui->spinBox_16->value());
+    ConfigIni->setValue("/scanner_PET/block_num_Y", ui->spinBox_17->value());
+    ConfigIni->setValue("/scanner_PET/block_num_Z", ui->spinBox_18->value());
+
+    //module  save
+    ConfigIni->setValue("/scanner_PET/module_size_X", ui->doubleSpinBox_19->value());
+    ConfigIni->setValue("/scanner_PET/module_size_Y", ui->doubleSpinBox_20->value());
+    ConfigIni->setValue("/scanner_PET/module_size_Z", ui->doubleSpinBox_21->value());
+
+    ConfigIni->setValue("/scanner_PET/module_pitch_X", ui->doubleSpinBox_22->value());
+    ConfigIni->setValue("/scanner_PET/module_pitch_Y", ui->doubleSpinBox_23->value());
+    ConfigIni->setValue("/scanner_PET/module_pitch_Z", ui->doubleSpinBox_24->value());
+
+    ConfigIni->setValue("/scanner_PET/module_num_X", ui->spinBox_25->value());
+    ConfigIni->setValue("/scanner_PET/module_num_Y", ui->spinBox_26->value());
+    ConfigIni->setValue("/scanner_PET/module_num_Z", ui->spinBox_27->value());
+
+    //panel save
+    ConfigIni->setValue("/scanner_PET/panel_size_X", ui->doubleSpinBox_28->value());
+    ConfigIni->setValue("/scanner_PET/panel_size_Y", ui->doubleSpinBox_29->value());
+    ConfigIni->setValue("/scanner_PET/panel_size_Z", ui->doubleSpinBox_30->value());
+
+    ConfigIni->setValue("/scanner_PET/panel_pitch_X", ui->doubleSpinBox_31->value());
+    ConfigIni->setValue("/scanner_PET/panel_pitch_Y", ui->doubleSpinBox_32->value());
+    ConfigIni->setValue("/scanner_PET/panel_pitch_Z", ui->doubleSpinBox_33->value());
+
+    ConfigIni->setValue("/scanner_PET/panel_num", ui->spinBox_34->value());
+    ConfigIni->setValue("/scanner_PET/crystal_offset", ui->spinBox_35->value());
+    ConfigIni->setValue("/scanner_PET/position_size", ui->spinBox_36->value());
+    ConfigIni->setValue("/scanner_PET/scanner_radius", ui->doubleSpinBox_37->value());
+
+    delete ConfigIni;
 }
