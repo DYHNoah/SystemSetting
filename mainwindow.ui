@@ -26,7 +26,7 @@
        <enum>Qt::LeftToRight</enum>
       </property>
       <property name="title">
-       <string>Scanner</string>
+       <string>Scanner_PET</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -191,13 +191,13 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_10"/>
+            <widget class="QSpinBox" name="spinBox_16"/>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_11"/>
+            <widget class="QSpinBox" name="spinBox_17"/>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_12"/>
+            <widget class="QSpinBox" name="spinBox_18"/>
            </item>
           </layout>
          </item>
@@ -207,26 +207,6 @@
             <widget class="QLabel" name="label_10">
              <property name="text">
               <string>Module Size:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_16"/>
-           </item>
-           <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_17"/>
-           </item>
-           <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_18"/>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_9">
-           <item>
-            <widget class="QLabel" name="label_11">
-             <property name="text">
-              <string>Module Pitch:</string>
              </property>
             </widget>
            </item>
@@ -242,31 +222,11 @@
           </layout>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_20">
+          <layout class="QHBoxLayout" name="horizontalLayout_9">
            <item>
-            <widget class="QLabel" name="label_27">
+            <widget class="QLabel" name="label_11">
              <property name="text">
-              <string>Module Num:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="spinBox_13"/>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="spinBox_14"/>
-           </item>
-           <item>
-            <widget class="QSpinBox" name="spinBox_15"/>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_10">
-           <item>
-            <widget class="QLabel" name="label_12">
-             <property name="text">
-              <string>Panel Size:</string>
+              <string>Module Pitch:</string>
              </property>
             </widget>
            </item>
@@ -282,6 +242,46 @@
           </layout>
          </item>
          <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_20">
+           <item>
+            <widget class="QLabel" name="label_27">
+             <property name="text">
+              <string>Module Num:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBox_25"/>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBox_26"/>
+           </item>
+           <item>
+            <widget class="QSpinBox" name="spinBox_27"/>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_10">
+           <item>
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Panel Size:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_28"/>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_29"/>
+           </item>
+           <item>
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_30"/>
+           </item>
+          </layout>
+         </item>
+         <item>
           <layout class="QHBoxLayout" name="horizontalLayout_11">
            <item>
             <widget class="QLabel" name="label_13">
@@ -291,13 +291,13 @@
             </widget>
            </item>
            <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_25"/>
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_31"/>
            </item>
            <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_26"/>
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_32"/>
            </item>
            <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_27"/>
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_33"/>
            </item>
           </layout>
          </item>
@@ -326,7 +326,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_30">
+            <widget class="QSpinBox" name="spinBox_34">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -359,7 +359,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_31"/>
+            <widget class="QSpinBox" name="spinBox_35"/>
            </item>
           </layout>
          </item>
@@ -385,7 +385,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="spinBox_32"/>
+            <widget class="QSpinBox" name="spinBox_36"/>
            </item>
           </layout>
          </item>
@@ -411,7 +411,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_33"/>
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_37"/>
            </item>
           </layout>
          </item>
