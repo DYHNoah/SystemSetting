@@ -9,15 +9,15 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    inifile.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    qreadini.cpp
+    src/inifile.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
+    src/qreadini.cpp
 
 HEADERS += \
-    inifile.h \
-    mainwindow.h \
-    qreadini.h
+    src/inifile.h \
+    src/mainwindow.h \
+    src/qreadini.h
 
 FORMS += \
     mainwindow.ui
