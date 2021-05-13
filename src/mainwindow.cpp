@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDebug>
+#include "CoreFunctionWidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -34,12 +35,6 @@ void MainWindow::on_actionOpen_File_triggered()
 //    ui->file_lineEdit->setText(fileName);
 }
 
-
-void MainWindow::on_pushButton_2_clicked()
-{
-    initSetting();
-}
-
 void MainWindow::on_actionSave_As_triggered()
 {
     /*QFileDialog fileDialog;
@@ -65,7 +60,12 @@ void MainWindow::on_actionSave_As_triggered()
         Flag_IsNew = 0;
         file.close();
     }*/
-    QString reSave_path = QFileDialog::getSaveFileName(this,tr("另存为"),"",tr("Text File(*.ini)")); //选择路径
+    QString reSave_path = QFileDialog::getSaveFileName(
+                                            this,
+                                            tr("save as"),
+                                            tr("scanner.ini"),
+                                            tr("Text File(*.ini)")
+                                           ); //选择路径
     //ui->label_2->setText(reSave_path);
     if(reSave_path!=NULL){
     //QImage image = myMap->image_show;//myMap为我的面板
@@ -81,14 +81,9 @@ void MainWindow::on_actionSave_As_triggered()
     }
 }
 
-void MainWindow::on_pushButton_3_clicked()
-{
-    qApp->quit();
-}
-
 void MainWindow::on_actionSave_triggered()
 {
-    QSettings *ConfigIni = new QSettings("/home/ushio/Coding/Practice/develop/build-SystemSetting-Desktop_Qt_5_15_2_GCC_64bit-Debug/settings/D80/scanner.ini",QSettings::IniFormat);
+    QSettings *ConfigIni = new QSettings("/home/ushio/桌面/Project/scanner.ini",QSettings::IniFormat);
 //    ConfigIni->setValue("/config/node1",ui->lineEdit->text());
 
     //crystal  save
@@ -149,7 +144,7 @@ void MainWindow::on_actionSave_triggered()
 
 void MainWindow::initSetting()
 {
-    QSettings *ConfigIni = new QSettings("/home/ushio/Coding/Practice/develop/build-SystemSetting-Desktop_Qt_5_15_2_GCC_64bit-Debug/settings/D80/scanner.ini",QSettings::IniFormat);
+    QSettings *ConfigIni = new QSettings("/home/ushio/桌面/Project/scanner.ini",QSettings::IniFormat);
 
     //crystal
     ui->doubleSpinBox->setValue(ConfigIni->value("/scanner_PET/crystal_size_X").toDouble());
@@ -205,4 +200,21 @@ void MainWindow::initSetting()
     ui->doubleSpinBox_37->setValue(ConfigIni->value("/scanner_PET/scanner_radius").toDouble());
 
     delete ConfigIni;
+}
+
+void MainWindow::on_refreshButton_clicked()
+{
+    initSetting();
+}
+
+void MainWindow::on_cancelButton_clicked()
+{
+    qApp->quit();
+}
+
+void MainWindow::on_applyButton_clicked()
+{
+    qDebug() << "www";
+    CoreFunctionWidget ww;
+    ww.show();
 }

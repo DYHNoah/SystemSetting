@@ -1,0 +1,10 @@
+<RCC>
+    <qresource prefix="/">
+        <file>wall.jpg</file>
+        <file>awesomeface.png</file>
+        <file>container.jpg</file>
+        <file>mapping_head.png</file>
+        <file>mapping_tail_1.png</file>
+        <file>mapping_tail.png</file>
+    </qresource>
+</RCC>

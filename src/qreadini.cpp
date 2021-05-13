@@ -1,16 +1,5 @@
 #include "qreadini.h"
 
-/*qreadini*qreadini::instance = NULL;
-
-qreadini::qreadini::getInstance()
-{
-    if(instance == NULL)
-    {
-        instance = new qreadini();
-    }
-    return instance;
-}*/
-
 qreadini::qreadini()
 {
     this->readIni();
