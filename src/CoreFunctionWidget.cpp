@@ -19,7 +19,7 @@ static QVector3D cubePositions[] = {
 
 CoreFunctionWidget::CoreFunctionWidget(QWidget *parent) : QOpenGLWidget(parent)
 {
-    camera = make_unique<Camera>(QVector3D(0.0f, 0.0f, 30.0f));
+    camera = make_unique<Camera>(QVector3D(0.0f, 0.0f, 50.0f));
     m_bLeftPressed = false;
 
     m_pTimer = new QTimer(this);
@@ -28,7 +28,7 @@ CoreFunctionWidget::CoreFunctionWidget(QWidget *parent) : QOpenGLWidget(parent)
         update();
     });
     m_pTimer->start(40);//25 fps
-
+    this->resize(QSize(800, 600));
 }
 
 CoreFunctionWidget::~CoreFunctionWidget()
@@ -59,47 +59,47 @@ void CoreFunctionWidget::initializeGL(){
 
     //VAO，VBO data
     float vertices[] = {
-        -1.0f, +3.732f, -6.0f,  0.0f, 0.0f,
-        +1.0f, +3.732f, -6.0f,  1.0f, 0.0f,
-        +1.0f, 8.0f+3.732f, -6.0f,  1.0f, 1.0f,
-        +1.0f, 8.0f+3.732f, -6.0f,  1.0f, 1.0f,
-        -1.0f, 8.0f+3.732f, -6.0f,  0.0f, 1.0f,
-        -1.0f, 0+3.732f, -6.0f,  0.0f, 0.0f,
+        -1.0f, +0.0, -6.0f,  0.0f, 0.0f,
+        +1.0f, +0.0, -6.0f,  1.0f, 0.0f,
+        +1.0f, 8.0f+0.0, -6.0f,  1.0f, 1.0f,
+        +1.0f, 8.0f+0.0, -6.0f,  1.0f, 1.0f,
+        -1.0f, 8.0f+0.0, -6.0f,  0.0f, 1.0f,
+        -1.0f, 0+0.0, -6.0f,  0.0f, 0.0f,
 
-        -1.0f, 0+3.732f, 0,  0.0f, 0.0f,
-        +1.0f, 0+3.732f, 0,  1.0f, 0.0f,
-        +1.0f, 8.0f+3.732f, 0,  1.0f, 1.0f,
-        +1.0f, 8.0f+3.732f, 0,  1.0f, 1.0f,
-        -1.0f, 8.0f+3.732f, 0,  0.0f, 1.0f,
-        -1.0f, 0+3.732f, 0,  0.0f, 0.0f,
+        -1.0f, 0+0.0, 0,  0.0f, 0.0f,
+        +1.0f, 0+0.0, 0,  1.0f, 0.0f,
+        +1.0f, 8.0f+0.0, 0,  1.0f, 1.0f,
+        +1.0f, 8.0f+0.0, 0,  1.0f, 1.0f,
+        -1.0f, 8.0f+0.0, 0,  0.0f, 1.0f,
+        -1.0f, 0+0.0, 0,  0.0f, 0.0f,
 
-        -1.0f, 8.0f+3.732f, 0,  1.0f, 0.0f,
-        -1.0f, 8.0f+3.732f, -6.0f,  1.0f, 1.0f,
-        -1.0f, 0+3.732f, -6.0f,  0.0f, 1.0f,
-        -1.0f, 0+3.732f, -6.0f,  0.0f, 1.0f,
-        -1.0f, 0+3.732f, 0,  0.0f, 0.0f,
-        -1.0f, 8.0f+3.732f, 0,  1.0f, 0.0f,
+        -1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
+        -1.0f, 8.0f+0.0, -6.0f,  1.0f, 1.0f,
+        -1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
+        -1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
+        -1.0f, 0+0.0, 0,  0.0f, 0.0f,
+        -1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
 
-        +1.0f, 8.0f+3.732f, 0,  1.0f, 0.0f,
-        +1.0f, 8.0f+3.732f, -6.0f,  1.0f, 1.0f,
-        +1.0f, 0+3.732f, -6.0f,  0.0f, 1.0f,
-        +1.0f, 0+3.732f, -6.0f,  0.0f, 1.0f,
-        +1.0f, 0+3.732f, 0,  0.0f, 0.0f,
-        +1.0f, 8.0f+3.732f, 0,  1.0f, 0.0f,
+        +1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
+        +1.0f, 8.0f+0.0, -6.0f,  1.0f, 1.0f,
+        +1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
+        +1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
+        +1.0f, 0+0.0, 0,  0.0f, 0.0f,
+        +1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
 
-        -1.0f, 0+3.732f, -6.0f,  0.0f, 1.0f,
-        +1.0f, 0+3.732f, -6.0f,  1.0f, 1.0f,
-        +1.0f, 0+3.732f, 0,  1.0f, 0.0f,
-        +1.0f, 0+3.732f, 0,  1.0f, 0.0f,
-        -1.0f, 0+3.732f, 0,  0.0f, 0.0f,
-        -1.0f, 0+3.732f, -6.0f,  0.0f, 1.0f,
+        -1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
+        +1.0f, 0+0.0, -6.0f,  1.0f, 1.0f,
+        +1.0f, 0+0.0, 0,  1.0f, 0.0f,
+        +1.0f, 0+0.0, 0,  1.0f, 0.0f,
+        -1.0f, 0+0.0, 0,  0.0f, 0.0f,
+        -1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
 
-        -1.0f, 8.0f+3.732f, -6.0f,  0.0f, 1.0f,
-        +1.0f, 8.0f+3.732f, -6.0f,  1.0f, 1.0f,
-        +1.0f, 8.0f+3.732f, 0,  1.0f, 0.0f,
-        +1.0f, 8.0f+3.732f, 0,  1.0f, 0.0f,
-        -1.0f, 8.0f+3.732f, 0,  0.0f, 0.0f,
-        -1.0f, 8.0f+3.732f, -6.0f,  0.0f, 1.0f
+        -1.0f, 8.0f+0.0, -6.0f,  0.0f, 1.0f,
+        +1.0f, 8.0f+0.0, -6.0f,  1.0f, 1.0f,
+        +1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
+        +1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
+        -1.0f, 8.0f+0.0, 0,  0.0f, 0.0f,
+        -1.0f, 8.0f+0.0, -6.0f,  0.0f, 1.0f
     };
 
     glGenVertexArrays(1, &VAO);
@@ -128,7 +128,7 @@ void CoreFunctionWidget::initializeGL(){
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     // load image, create texture and generate mipmaps
-    QImage img1 = QImage(":/mapping_tail.png").convertToFormat(QImage::Format_RGB888);
+    QImage img1 = QImage(":/awesomeface.png").convertToFormat(QImage::Format_RGB888);
     if (!img1.isNull()) {
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, img1.width(), img1.height(), 0, GL_RGB, GL_UNSIGNED_BYTE, img1.bits());
         glGenerateMipmap(GL_TEXTURE_2D);
@@ -189,26 +189,57 @@ void CoreFunctionWidget::paintGL(){
 
     // render boxes
     glBindVertexArray(VAO);
-    for (unsigned int i = 0; i < 12; i++) {
+//    int x = 12;
+    /*for (unsigned int i = 0; i < x; i++) {
        // calculate the model matrix for each object and pass it to shader before drawing
-       QMatrix4x4 model;
+       QMatrix4x4 model, model2;
        //model.translate(cubePositions[i]);
-       float angle = (i + 1.0f) * m_nTimeValue;
+       //float angle = (i + 1.0f) * m_nTimeValue;
        //model.rotate(M_PI, QVector3D(0, 3.7f, 6.0f));
        //model.translate(QVector3D(0, 3.73f, 0));
-       model.rotate(i*30, QVector3D(0, 0, 1.0f));
+       model.rotate(i*360/x, QVector3D(0, 0, 1.0f));
+       model.translate(QVector3D(0, 8.5f, 0));
        shaderProgram.setUniformValue("model", model);
        glDrawArrays(GL_TRIANGLES, 0, 36);
-    }/*
-    QMatrix4x4 model;
-    shaderProgram.setUniformValue("model", model);
-    glDrawArrays(GL_TRIANGLES, 0, 36);*/
+       model2 = model;
+       model2.translate(QVector3D(2.5f, 0, 0));
+       shaderProgram.setUniformValue("model", model2);
+       glDrawArrays(GL_TRIANGLES, 0, 36);
+    }*/
+    float delta_y = tan(M_PI/2-M_PI/scanner.panel_num);
+    for (int i = 0; i < scanner.panel_num; i++)
+    {
+        QMatrix4x4 standard_model;
+        standard_model.rotate(i*360/scanner.panel_num, QVector3D(0, 0, 1.0f));
+        QMatrix4x4 model_z = standard_model;
+        model_z.translate(QVector3D(0, delta_y, 0));
+        for (int z = 0; z < scanner.module_num_Z; z++)
+        {
+            model_z.translate(QVector3D(0, 0, -7.0f));
+            for (int x = 0; x < scanner.module_num_X; x++)
+            {
+                // calculate the model matrix for each object and pass it to shader before drawing
+                QMatrix4x4 model_x = model_z;
+                model_x.translate(QVector3D(0, 9.0f*x, 0));
+                shaderProgram.setUniformValue("model", model_x);
+                glDrawArrays(GL_TRIANGLES, 0, 36);
+            }
+        }
+        //shaderProgram.setUniformValue("model", standard_model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+    }
+    //qDebug() << scanner.panel_num << endl<<scanner.module_num_X << scanner.module_num_Y << scanner.module_num_Z;
+//    qDebug() << tan(M_PI/4);
     shaderProgram.release();
 }
 
 void CoreFunctionWidget::keyPressEvent(QKeyEvent *event)
 {
     int key = event->key();
+    if (key == Qt::Key_Escape)
+    {
+        this->close();
+    }
     if (key >= 0 && key < 1024)
         camera->keys[key] = true;
 }

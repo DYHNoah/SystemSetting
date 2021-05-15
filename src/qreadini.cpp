@@ -7,7 +7,7 @@ qreadini::qreadini()
 
 void qreadini::readIni()
 {
-    QSettings *configIniRead = new QSettings("/home/ushio/Coding/Practice/develop/build-SystemSetting-Desktop_Qt_5_15_2_GCC_64bit-Debug/settings/D80/scanner.ini", QSettings::IniFormat);  //初始化读取ini文件
+    QSettings *configIniRead = new QSettings("/home/ushio/桌面/Project/scanner.ini", QSettings::IniFormat);  //初始化读取ini文件
     //crystal
     iniConfig.crystal_num_X = configIniRead->value("scanner_PET/crystal_num_X").toInt();
     iniConfig.crystal_num_Y = configIniRead->value("scanner_PET/crystal_num_Y").toInt();

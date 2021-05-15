@@ -4,7 +4,6 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include <QDebug>
-#include "CoreFunctionWidget.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -214,7 +213,12 @@ void MainWindow::on_cancelButton_clicked()
 
 void MainWindow::on_applyButton_clicked()
 {
-    qDebug() << "www";
-    CoreFunctionWidget ww;
-    ww.show();
+    //qDebug() << "www";
+    new_win = new CoreFunctionWidget();
+    new_win->scanner.panel_num = ui->spinBox_34->text().toInt();
+    new_win->scanner.module_num_X = ui->spinBox_25->text().toInt();
+    new_win->scanner.module_num_Y = ui->spinBox_26->text().toInt();
+    new_win->scanner.module_num_Z = ui->spinBox_27->text().toInt();
+    qDebug() << new_win->scanner.panel_num << new_win->scanner.module_num_X << new_win->scanner.module_num_Y;
+    new_win->show();
 }

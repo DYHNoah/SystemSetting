@@ -7,6 +7,7 @@
 #include <QOpenGLShaderProgram>
 #include "make_unique.hpp"
 #include <qmath.h>
+#include "qreadini.h"
 
 #include "Camera.h"
 
@@ -17,6 +18,9 @@ class CoreFunctionWidget : public QOpenGLWidget
 public:
     explicit CoreFunctionWidget(QWidget *parent = nullptr);
     ~CoreFunctionWidget() Q_DECL_OVERRIDE;
+
+    //scanner
+    IniConfig scanner;
 
 protected:
     void initializeGL()  Q_DECL_OVERRIDE;
@@ -42,6 +46,7 @@ private:
     std::unique_ptr<Camera> camera;
     bool m_bLeftPressed;
     QPoint m_lastPos;
+
 };
 
 #endif // COREFUNCTIONWIDGET_H
