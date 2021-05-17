@@ -1,24 +1,13 @@
-#include "CoreFunctionWidget.h"
+#include "CrystalWidget.h"
+#include "ui_crystalwidget.h"
 #include <QDebug>
 #include <QTimer>
 #include <QKeyEvent>
 #include <QDateTime>
 
-static QVector3D cubePositions[] = {
-  QVector3D( 0.0f,  0.0f,  0.0f),
-  QVector3D( 2.0f,  5.0f, -15.0f),
-  QVector3D(-1.5f, -2.2f, -2.5f),
-  QVector3D(-3.8f, -2.0f, -12.3f),
-  QVector3D( 2.4f, -0.4f, -3.5f),
-  QVector3D(-1.7f,  3.0f, -7.5f),
-  QVector3D( 1.3f, -2.0f, -2.5f),
-  QVector3D( 1.5f,  2.0f, -2.5f),
-  QVector3D( 1.5f,  0.2f, -1.5f),
-  QVector3D(-1.3f,  1.0f, -1.5f)
-};
-
-CoreFunctionWidget::CoreFunctionWidget(QWidget *parent) : QOpenGLWidget(parent)
+CrystalWidget::CrystalWidget(QWidget *parent) : QOpenGLWidget(parent)
 {
+
     camera = make_unique<Camera>(QVector3D(0.0f, 0.0f, 50.0f));
     m_bLeftPressed = false;
 
@@ -31,13 +20,13 @@ CoreFunctionWidget::CoreFunctionWidget(QWidget *parent) : QOpenGLWidget(parent)
     this->resize(QSize(800, 600));
 }
 
-CoreFunctionWidget::~CoreFunctionWidget()
+CrystalWidget::~CrystalWidget()
 {
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
 }
 
-void CoreFunctionWidget::initializeGL(){
+void CrystalWidget::initializeGL(){
     this->initializeOpenGLFunctions();
 
     bool success = shaderProgram.addShaderFromSourceFile(QOpenGLShader::Vertex, ":/textures.vert");
@@ -59,47 +48,47 @@ void CoreFunctionWidget::initializeGL(){
 
     //VAO，VBO data
     float vertices[] = {
-        -1.0f, +0.0, -6.0f,  0.0f, 0.0f,
-        +1.0f, +0.0, -6.0f,  1.0f, 0.0f,
-        +1.0f, 8.0f+0.0, -6.0f,  1.0f, 1.0f,
-        +1.0f, 8.0f+0.0, -6.0f,  1.0f, 1.0f,
-        -1.0f, 8.0f+0.0, -6.0f,  0.0f, 1.0f,
-        -1.0f, 0+0.0, -6.0f,  0.0f, 0.0f,
+        -1.0f, -1.0f, -1.0f,  0.0f, 0.0f,
+         1.0f, -1.0f, -1.0f,  1.0f, 0.0f,
+         1.0f,  1.0f, -1.0f,  1.0f, 1.0f,
+         1.0f,  1.0f, -1.0f,  1.0f, 1.0f,
+        -1.0f,  1.0f, -1.0f,  0.0f, 1.0f,
+        -1.0f, -1.0f, -1.0f,  0.0f, 0.0f,
 
-        -1.0f, 0+0.0, 0,  0.0f, 0.0f,
-        +1.0f, 0+0.0, 0,  1.0f, 0.0f,
-        +1.0f, 8.0f+0.0, 0,  1.0f, 1.0f,
-        +1.0f, 8.0f+0.0, 0,  1.0f, 1.0f,
-        -1.0f, 8.0f+0.0, 0,  0.0f, 1.0f,
-        -1.0f, 0+0.0, 0,  0.0f, 0.0f,
+        -1.0f, -1.0f,  1.0f,  0.0f, 0.0f,
+         1.0f, -1.0f,  1.0f,  1.0f, 0.0f,
+         1.0f,  1.0f,  1.0f,  1.0f, 1.0f,
+         1.0f,  1.0f,  1.0f,  1.0f, 1.0f,
+        -1.0f,  1.0f,  1.0f,  0.0f, 1.0f,
+        -1.0f, -1.0f,  1.0f,  0.0f, 0.0f,
 
-        -1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
-        -1.0f, 8.0f+0.0, -6.0f,  1.0f, 1.0f,
-        -1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
-        -1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
-        -1.0f, 0+0.0, 0,  0.0f, 0.0f,
-        -1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
+        -1.0f,  1.0f,  1.0f,  1.0f, 0.0f,
+        -1.0f,  1.0f, -1.0f,  1.0f, 1.0f,
+        -1.0f, -1.0f, -1.0f,  0.0f, 1.0f,
+        -1.0f, -1.0f, -1.0f,  0.0f, 1.0f,
+        -1.0f, -1.0f,  1.0f,  0.0f, 0.0f,
+        -1.0f,  1.0f,  1.0f,  1.0f, 0.0f,
 
-        +1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
-        +1.0f, 8.0f+0.0, -6.0f,  1.0f, 1.0f,
-        +1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
-        +1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
-        +1.0f, 0+0.0, 0,  0.0f, 0.0f,
-        +1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
+         1.0f,  1.0f,  1.0f,  1.0f, 0.0f,
+         1.0f,  1.0f, -1.0f,  1.0f, 1.0f,
+         1.0f, -1.0f, -1.0f,  0.0f, 1.0f,
+         1.0f, -1.0f, -1.0f,  0.0f, 1.0f,
+         1.0f, -1.0f,  1.0f,  0.0f, 0.0f,
+         1.0f,  1.0f,  1.0f,  1.0f, 0.0f,
 
-        -1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
-        +1.0f, 0+0.0, -6.0f,  1.0f, 1.0f,
-        +1.0f, 0+0.0, 0,  1.0f, 0.0f,
-        +1.0f, 0+0.0, 0,  1.0f, 0.0f,
-        -1.0f, 0+0.0, 0,  0.0f, 0.0f,
-        -1.0f, 0+0.0, -6.0f,  0.0f, 1.0f,
+        -1.0f, -1.0f, -1.0f,  0.0f, 1.0f,
+         1.0f, -1.0f, -1.0f,  1.0f, 1.0f,
+         1.0f, -1.0f,  1.0f,  1.0f, 0.0f,
+         1.0f, -1.0f,  1.0f,  1.0f, 0.0f,
+        -1.0f, -1.0f,  1.0f,  0.0f, 0.0f,
+        -1.0f, -1.0f, -1.0f,  0.0f, 1.0f,
 
-        -1.0f, 8.0f+0.0, -6.0f,  0.0f, 1.0f,
-        +1.0f, 8.0f+0.0, -6.0f,  1.0f, 1.0f,
-        +1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
-        +1.0f, 8.0f+0.0, 0,  1.0f, 0.0f,
-        -1.0f, 8.0f+0.0, 0,  0.0f, 0.0f,
-        -1.0f, 8.0f+0.0, -6.0f,  0.0f, 1.0f
+        -1.0f,  1.0f, -1.0f,  0.0f, 1.0f,
+         1.0f,  1.0f, -1.0f,  1.0f, 1.0f,
+         1.0f,  1.0f,  1.0f,  1.0f, 0.0f,
+         1.0f,  1.0f,  1.0f,  1.0f, 0.0f,
+        -1.0f,  1.0f,  1.0f,  0.0f, 0.0f,
+        -1.0f,  1.0f, -1.0f,  0.0f, 1.0f
     };
 
     glGenVertexArrays(1, &VAO);
@@ -162,11 +151,11 @@ void CoreFunctionWidget::initializeGL(){
     glEnable(GL_DEPTH_TEST);
 }
 
-void CoreFunctionWidget::resizeGL(int w, int h){
+void CrystalWidget::resizeGL(int w, int h){
     glViewport(0, 0, w, h);
 }
 
-void CoreFunctionWidget::paintGL(){
+void CrystalWidget::paintGL(){
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // also clear the depth buffer now!
 
@@ -189,57 +178,24 @@ void CoreFunctionWidget::paintGL(){
 
     // render boxes
     glBindVertexArray(VAO);
-//    int x = 12;
-    /*for (unsigned int i = 0; i < x; i++) {
-       // calculate the model matrix for each object and pass it to shader before drawing
-       QMatrix4x4 model, model2;
-       //model.translate(cubePositions[i]);
-       //float angle = (i + 1.0f) * m_nTimeValue;
-       //model.rotate(M_PI, QVector3D(0, 3.7f, 6.0f));
-       //model.translate(QVector3D(0, 3.73f, 0));
-       model.rotate(i*360/x, QVector3D(0, 0, 1.0f));
-       model.translate(QVector3D(0, 8.5f, 0));
-       shaderProgram.setUniformValue("model", model);
-       glDrawArrays(GL_TRIANGLES, 0, 36);
-       model2 = model;
-       model2.translate(QVector3D(2.5f, 0, 0));
-       shaderProgram.setUniformValue("model", model2);
-       glDrawArrays(GL_TRIANGLES, 0, 36);
-    }*/
-    float delta_y = tan(M_PI/2-M_PI/scanner.panel_num);
-    for (int i = 0; i < scanner.panel_num; i++)
-    {
-        QMatrix4x4 standard_model;
-        standard_model.rotate(i*360/scanner.panel_num, QVector3D(0, 0, 1.0f));
-        QMatrix4x4 model_z = standard_model;
-        model_z.translate(QVector3D(0, delta_y*scanner.module_num_Y, 0));
-        for (int y = 0; y < scanner.module_num_Y; y++)
-        {
-            QMatrix4x4 model_y = model_z;
-            model_y.translate(QVector3D(2*y-scanner.module_num_Y+1, 0, 0));
-            for (int z = 0; z < scanner.module_num_Z; z++)
-            {
-                model_y.translate(QVector3D(0, 0, -7.0f));
-                for (int x = 0; x < scanner.module_num_X; x++)
-                {
-                    // calculate the model matrix for each object and pass it to shader before drawing
-                    QMatrix4x4 model_x = model_y;
-                    model_x.translate(QVector3D(0, 9.0f*x, 0));
-                    shaderProgram.setUniformValue("model", model_x);
-                    glDrawArrays(GL_TRIANGLES, 0, 36);
-                }
-            }
-        }
 
-        //shaderProgram.setUniformValue("model", standard_model);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+    scanner.crystal_num_Y = 13;
+    scanner.crystal_num_Z = 13;
+    for (int y = 0; y < scanner.crystal_num_Y; y++)
+    {
+        QMatrix4x4 model;
+        model.translate(QVector3D(y*2.5f, 0, 0));
+        for (int z = 0; z < scanner.crystal_num_Z; z++)
+        {
+            model.translate(QVector3D(0, 2.5f, 0));
+            shaderProgram.setUniformValue("model", model);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
     }
-    //qDebug() << scanner.panel_num << endl<<scanner.module_num_X << scanner.module_num_Y << scanner.module_num_Z;
-//    qDebug() << tan(M_PI/4);
     shaderProgram.release();
 }
 
-void CoreFunctionWidget::keyPressEvent(QKeyEvent *event)
+void CrystalWidget::keyPressEvent(QKeyEvent *event)
 {
     int key = event->key();
     if (key == Qt::Key_Escape)
@@ -250,14 +206,14 @@ void CoreFunctionWidget::keyPressEvent(QKeyEvent *event)
         camera->keys[key] = true;
 }
 
-void CoreFunctionWidget::keyReleaseEvent(QKeyEvent *event)
+void CrystalWidget::keyReleaseEvent(QKeyEvent *event)
 {
     int key = event->key();
     if (key >= 0 && key < 1024)
         camera->keys[key] = false;
 }
 
-void CoreFunctionWidget::mousePressEvent(QMouseEvent *event)
+void CrystalWidget::mousePressEvent(QMouseEvent *event)
 {
     if(event->button() == Qt::LeftButton){
         m_bLeftPressed = true;
@@ -265,14 +221,14 @@ void CoreFunctionWidget::mousePressEvent(QMouseEvent *event)
     }
 }
 
-void CoreFunctionWidget::mouseReleaseEvent(QMouseEvent *event)
+void CrystalWidget::mouseReleaseEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
 
     m_bLeftPressed = false;
 }
 
-void CoreFunctionWidget::mouseMoveEvent(QMouseEvent *event)
+void CrystalWidget::mouseMoveEvent(QMouseEvent *event)
 {
     if (m_bLeftPressed) {
         int xpos = event->pos().x();
@@ -285,7 +241,7 @@ void CoreFunctionWidget::mouseMoveEvent(QMouseEvent *event)
     }
 }
 
-void CoreFunctionWidget::wheelEvent(QWheelEvent *event)
+void CrystalWidget::wheelEvent(QWheelEvent *event)
 {
     QPoint offset = event->angleDelta();
     camera->processMouseScroll(offset.y()/20.0f);

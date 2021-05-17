@@ -11,6 +11,7 @@ CONFIG += c++11
 SOURCES += \
     src/Camera.cpp \
     src/CoreFunctionWidget.cpp \
+    src/CrystalWidget.cpp \
     src/inifile.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
@@ -19,6 +20,7 @@ SOURCES += \
 HEADERS += \
     src/Camera.h \
     src/CoreFunctionWidget.h \
+    src/CrystalWidget.h \
     src/inifile.h \
     src/mainwindow.h \
     src/make_unique.hpp \

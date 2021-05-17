@@ -30,7 +30,7 @@ void MainWindow::on_actionNew_File_triggered()
 void MainWindow::on_actionOpen_File_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(this, "选择文件", "./");
-
+    qDebug() << "www";
 //    ui->file_lineEdit->setText(fileName);
 }
 
@@ -219,6 +219,13 @@ void MainWindow::on_applyButton_clicked()
     new_win->scanner.module_num_X = ui->spinBox_25->text().toInt();
     new_win->scanner.module_num_Y = ui->spinBox_26->text().toInt();
     new_win->scanner.module_num_Z = ui->spinBox_27->text().toInt();
-    qDebug() << new_win->scanner.panel_num << new_win->scanner.module_num_X << new_win->scanner.module_num_Y;
+    new_win->scanner.block_num_X = ui->spinBox_16->text().toInt();
+    new_win->scanner.block_num_Y = ui->spinBox_17->text().toInt();
+    new_win->scanner.block_num_Z = ui->spinBox_18->text().toInt();
+    new_win->scanner.crystal_num_X = ui->spinBox_7->text().toInt();
+    new_win->scanner.crystal_num_Y = ui->spinBox_8->text().toInt();
+    new_win->scanner.crystal_num_Z = ui->spinBox_9->text().toInt();
+//    qDebug() << new_win->scanner.panel_num << new_win->scanner.module_num_X << new_win->scanner.module_num_Y;
     new_win->show();
+//    delete new_win;
 }
